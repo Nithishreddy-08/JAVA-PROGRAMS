@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Shopping_cart {
+    public static void main(String[] args) {
+        ArrayList<String> shoppingList = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        while (true) {
+            showMenu();
+            System.out.print("Choose (1/2/3/4): ");
+            choice = scanner.nextInt();
+            scanner.nextLine();  // To consume the newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter item to add: ");
+                    String itemToAdd = scanner.nextLine();
+                    shoppingList.add(itemToAdd);
+                    System.out.println("'" + itemToAdd + "' added to the shopping list.");
+                    break;
+
+                case 2:
+                    System.out.print("Enter item to remove: ");
+                    String itemToRemove = scanner.nextLine();
+                    if (shoppingList.contains(itemToRemove)) {
+                        shoppingList.remove(itemToRemove);
+                        System.out.println("'" + itemToRemove + "' removed successfully.");
+                    } else {
+                        System.out.println("'" + itemToRemove + "' not found in the list.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("\nCurrent Shopping List:");
+                    if (shoppingList.isEmpty()) {
+                        System.out.println("The shopping list is empty.");
+                    } else {
+                        for (String item : shoppingList) {
+                            System.out.println("- " + item);
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Exiting... Goodbye!");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Please enter 1, 2, 3, or 4.");
+            }
+        }
+    }
+
+    public static void showMenu() {
+        System.out.println("\nMenu:");
+        System.out.println("1. Add items");
+        System.out.println("2. Remove items");
+        System.out.println("3. View list");
+        System.out.println("4. Exit");
+    }
+}
